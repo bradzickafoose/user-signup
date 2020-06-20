@@ -1,25 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
+import useSetState from './useSetState';
 
 import './UserSignup.css';
 
+const initialState = {
+  username: '',
+  email: '',
+  password: '',
+  passwordConfirmation: '',
+  newsletterInterest: false
+};
+
 const UserSignup = () => {
-  const [username, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [newsletterInterest, setNewsletterInterest] = useState(false);
+  const [state, setState] = useSetState(initialState)
 
   const handleSubmit = event => {
     event.preventDefault();
     clear();
   };
 
+  const handleChange = event => {
+    setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
   const clear = () => {
-    setUserName('');
-    setEmail('');
-    setPassword('');
-    setPasswordConfirmation('');
-    setNewsletterInterest(false);
+    setState(initialState);
   };
 
   return (
@@ -29,52 +36,46 @@ const UserSignup = () => {
         id="username"
         name="username"
         type="text"
-        value={username}
+        value={state.username}
         required
-        onChange={event => {
-          setUserName(event.target.value);
-        }}
+        onChange={handleChange}
         />
       <label htmlFor="email">Email</label>
       <input
         id="email"
         name="email"
         type="email"
-        value={email}
+        value={state.email}
         required
-        onChange={event => {
-          setEmail(event.target.value);
-        }}
+        onChange={handleChange}
       />
       <label htmlFor="password">Password</label>
       <input
         id="password"
         name="password"
         type="password"
-        value={password}
+        value={state.password}
         required
-        onChange={event => {
-          setPassword(event.target.value);
-        }}
+        onChange={handleChange}
       />
       <label htmlFor="passwordConfirmation">Confirm Password</label>
       <input
         id="passwordConfirmation"
         name="passwordConfirmation"
         type="password"
-        value={passwordConfirmation}
+        value={state.passwordConfirmation}
         required
-        onChange={event => {
-          setPasswordConfirmation(event.target.value);
-        }}
+        onChange={handleChange}
       />
-      <label htmlFor="investmentInterest" className="UserSignup__checkbox">
+      <label htmlFor="newsletterInterest" className="UserSignup__checkbox">
         <input
           id="newsletterInterest"
           name="newsletterInterest"
           type="checkbox"
-          checked={newsletterInterest}
-          onChange={event => setNewsletterInterest(event.target.checked)}
+          checked={state.newsletterInterest}
+          onChange={event =>
+            setState({ newsletterInterest: event.target.checked })
+          }
         />
         Do you want to subscribe to our newsletter?
       </label>
