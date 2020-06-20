@@ -15,15 +15,6 @@ input {
   -moz-osx-font-smoothing: grayscale;
 }
 
-p {
-  line-height: 1.4em;
-  font-family: Georgia;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 label,
 input {
