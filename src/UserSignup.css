@@ -1,0 +1,14 @@
+.UserSignup__checkbox {
+  font-size: 0.6em;
+  font-weight: normal;
+}
+
+.UserSignup__checkbox input {
+  display: inline;
+  width: auto;
+}
+
+.error {
+  color: #f36653;
+  font-size: 0.6em;
+}
